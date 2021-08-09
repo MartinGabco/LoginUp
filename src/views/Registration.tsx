@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 //imports
 import { Link } from 'react-router-dom';
@@ -8,9 +8,18 @@ import '../styles/Registration.css';
 
 const Registration: React.FC = () => {
 
+    //useRef - gain data from inputs
+    const emailInputRef = useRef<HTMLInputElement>(null);
+    const passwordInputRef = useRef<HTMLInputElement>(null);
+
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault();
-        console.log('It runs!TS works!');
+
+        const receivedEmail = emailInputRef.current?.value;
+        const receivedPassword = passwordInputRef.current?.value;
+
+        console.log(receivedEmail);
+        console.log(receivedPassword);
     }
 
     return (
@@ -30,6 +39,7 @@ const Registration: React.FC = () => {
                             type="email" 
                             id="email" 
                             className="input" 
+                            ref={emailInputRef}
                             required
                         />
                     </div>
@@ -44,6 +54,7 @@ const Registration: React.FC = () => {
                             type="password" 
                             id="password" 
                             className="input" 
+                            ref={passwordInputRef}
                             required
                         />
                     </div>
