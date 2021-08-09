@@ -18,8 +18,26 @@ const Registration: React.FC = () => {
         const receivedEmail = emailInputRef.current?.value;
         const receivedPassword = passwordInputRef.current?.value;
 
-        console.log(receivedEmail);
-        console.log(receivedPassword);
+        fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBjA92JwCN3PE6mLVmDrQGfEOGWPoJj0a4',
+        {
+            method: 'POST',
+            body: JSON.stringify({
+                email: receivedEmail,
+                password: receivedPassword,
+                returnSecureToken: true
+            }),
+            headers: {
+                'Content-Type':'application/json',
+            },
+        }).then((res) => {
+            if(res.ok) {
+                console.log('Good job!');
+            } else {
+                return res.json().then((data) => {
+                    console.log(data);
+                });
+            }
+        });
     }
 
     return (
