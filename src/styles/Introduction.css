@@ -2,4 +2,28 @@
   width: 75%;
   height: 25em;
   background-color: #fbffc4;
+}
+.introduction .intro-link {
+  width: 10em;
+  height: 2.5em;
+  margin: 0 auto;
+  margin-top: 15em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-decoration: none;
+  border: 0.05em solid #000000;
+  background: url("../icons/next_right.png") no-repeat 8.5em;
+}
+.introduction .intro-link:hover, .introduction .intro-link:focus {
+  background: url("../icons/next_right_click.png") no-repeat 8.5em #ffffff;
+}
+.introduction .intro-link .link-text {
+  font-size: 1.1em;
+  padding-bottom: 0.2em;
+  margin-right: 1.6em;
+}
+.introduction .intro-link .link-text:hover, .introduction .intro-link .link-text:focus {
+  color: #e62020;
 }/*# sourceMappingURL=Introduction.css.map */

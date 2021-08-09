@@ -10,7 +10,9 @@ const Introduction: React.FC = () => {
     return (
         <div className="introduction">
             <p className="title">Introduction</p>
-            <Link to="/registration">I want to start</Link>
+                <Link to="/registration" className="intro-link">
+                    <p className="link-text">I want to start</p>
+                </Link>
         </div>
     );
 }

@@ -2,4 +2,32 @@
     width: 75%;
     height: 25em;
     background-color: rgb(251, 255, 196);
+
+    .intro-link {
+        width: 10em;
+        height: 2.5em;
+        margin: 0 auto;
+        margin-top: 15em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        text-decoration: none;
+        border: 0.05em solid #000000;
+        background: url('../icons/next_right.png') no-repeat 8.5em;
+        &:hover,
+        &:focus {
+            background: url('../icons/next_right_click.png') no-repeat 8.5em #ffffff;
+        }
+
+        .link-text {
+            font-size: 1.1em;
+            padding-bottom: 0.2em;
+            margin-right: 1.6em;
+            &:hover,
+            &:focus {
+                color: #e62020;
+            }
+        }
+    }
 }
