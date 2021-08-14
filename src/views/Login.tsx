@@ -1,19 +1,47 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
-//imports
-import { Link } from 'react-router-dom';
-
-//styles
-import '../styles/Login.css';
 //styles
 import '../styles/Registration.css';
 
 const Login: React.FC = () => {
+
+    //useRef - gain data from inputs
+    const emailInputRef = useRef<HTMLInputElement>(null);
+    const passwordInputRef = useRef<HTMLInputElement>(null);
+
+    const submitHandler = (event: React.FormEvent) => {
+        event.preventDefault();
+
+        const receivedEmail = emailInputRef.current?.value;
+        const receivedPassword = passwordInputRef.current?.value;
+
+        fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBjA92JwCN3PE6mLVmDrQGfEOGWPoJj0a4',
+        {
+            method: 'POST',
+            body: JSON.stringify({
+                email: receivedEmail,
+                password: receivedPassword,
+                returnSecureToken: true
+            }),
+            headers: {
+                'Content-Type':'application/json',
+            },
+        }).then((res) => {
+            if(res.ok) {
+                return res.json().then((data) => {
+                    console.log(data);
+                });
+            } else {
+                console.log('Error!');
+            }
+        });
+    }    
+
     return ( 
         <div className="login">
             <p className="ltitle">Login</p>
             <section className="form-place">
-                <form>
+                <form onSubmit={submitHandler}>
                     <div className="email">
                         <label 
                             htmlFor="email" 
@@ -25,6 +53,7 @@ const Login: React.FC = () => {
                             type="email" 
                             id="email" 
                             className="input" 
+                            ref={emailInputRef}
                             required
                         />
                     </div>
@@ -39,6 +68,7 @@ const Login: React.FC = () => {
                             type="password" 
                             id="password" 
                             className="input" 
+                            ref={passwordInputRef}
                             required
                         />
                     </div>
