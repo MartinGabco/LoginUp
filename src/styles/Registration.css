@@ -1,10 +1,16 @@
-.registration {
+.registration,
+.login {
   width: 30%;
   height: 25em;
   color: black;
   background-color: chocolate;
 }
-.registration form {
+.registration .ltitle,
+.login .ltitle {
+  margin-top: 2em;
+}
+.registration form,
+.login form {
   width: 80%;
   min-height: 14em;
   margin: 0 auto;
@@ -12,7 +18,9 @@
   padding-top: 1.5em;
 }
 .registration form .email,
-.registration form .password {
+.registration form .password,
+.login form .email,
+.login form .password {
   width: 90%;
   min-height: 4em;
   margin: 0 auto;
@@ -22,22 +30,27 @@
   align-items: center;
 }
 .registration form .email-title,
-.registration form .password-title {
+.registration form .password-title,
+.login form .email-title,
+.login form .password-title {
   font-size: 0.85em;
   padding-bottom: 1em;
 }
-.registration form input {
+.registration form input,
+.login form input {
   width: 65%;
   height: 1.75em;
   padding: 0 0.35em 0 0.35em;
   font-size: 0.65em;
   outline: none;
 }
-.registration form .error-message {
+.registration form .error-message,
+.login form .error-message {
   margin-bottom: -1em;
   color: #ffffff;
 }
-.registration form .submit-button {
+.registration form .submit-button,
+.login form .submit-button {
   padding: 0.5em 1em 0.5em 1em;
   font-size: 0.7em;
   margin-top: 3.5em;
@@ -45,7 +58,8 @@
   border: none;
   background-color: #00ffff;
 }
-.registration form .loading {
+.registration form .loading,
+.login form .loading {
   width: 1.35em;
   height: 1.35em;
   border: 0.1em solid #ffffff;

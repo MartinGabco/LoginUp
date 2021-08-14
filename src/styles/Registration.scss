@@ -1,8 +1,13 @@
-.registration {
+.registration,
+.login {
     width: 30%;
     height: 25em;
     color: black;
     background-color: chocolate;
+
+    .ltitle {
+        margin-top: 2em;
+    }
 
     form {
         width: 80%;
