@@ -36,6 +36,11 @@
             outline: none;
         }
 
+        .error-message {
+            margin-bottom: -1em;
+            color: #ffffff;
+        }
+
         .submit-button {
             padding: 0.5em 1em 0.5em 1em;
             font-size: 0.7em;
@@ -43,6 +48,20 @@
             cursor: pointer;
             border: none;
             background-color: #00ffff;
+        }
+
+        .loading {
+            width: 1.35em;
+            height: 1.35em;
+            border: 0.1em solid #ffffff;
+            border-top: 0.1em solid #ffff00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 2.5em auto;
+            @keyframes spin {
+                0% { transform: rotate(0deg);}
+                100% { transform: rotate(360deg);}
+            }
         }
     }
 }

@@ -33,6 +33,10 @@
   font-size: 0.65em;
   outline: none;
 }
+.registration form .error-message {
+  margin-bottom: -1em;
+  color: #ffffff;
+}
 .registration form .submit-button {
   padding: 0.5em 1em 0.5em 1em;
   font-size: 0.7em;
@@ -40,4 +44,30 @@
   cursor: pointer;
   border: none;
   background-color: #00ffff;
+}
+.registration form .loading {
+  width: 1.35em;
+  height: 1.35em;
+  border: 0.1em solid #ffffff;
+  border-top: 0.1em solid #ffff00;
+  border-radius: 50%;
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+  margin: 2.5em auto;
+}
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=Registration.css.map */

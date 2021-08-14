@@ -1,12 +1,17 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 //imports
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 //styles
 import '../styles/Registration.css';
 
 const Registration: React.FC = () => {
+
+    //Hooks
+    const history = useHistory();
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState([]);
 
     //useRef - gain data from inputs
     const emailInputRef = useRef<HTMLInputElement>(null);
@@ -17,6 +22,8 @@ const Registration: React.FC = () => {
 
         const receivedEmail = emailInputRef.current?.value;
         const receivedPassword = passwordInputRef.current?.value;
+
+        setIsLoading(true);
 
         fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBjA92JwCN3PE6mLVmDrQGfEOGWPoJj0a4',
         {
@@ -30,11 +37,15 @@ const Registration: React.FC = () => {
                 'Content-Type':'application/json',
             },
         }).then((res) => {
+            setIsLoading(false)
             if(res.ok) {
-                console.log('Good job!');
+                history.replace('/login')
             } else {
                 return res.json().then((data) => {
-                    console.log(data);
+                    if (data && data.error && data.error.message) {
+                        let errorMessage = data.error.message;
+                        setError(errorMessage);
+                    }
                 });
             }
         });
@@ -76,12 +87,14 @@ const Registration: React.FC = () => {
                             required
                         />
                     </div>
-                    <button 
+                     <p className="error-message">{error}</p>
+                    {!isLoading && <button 
                         type="submit" 
                         className="submit-button"
                     >
                         Register me, please!
-                    </button>
+                    </button>}
+                    {isLoading && <p className="loading"></p>}
                 </form>
             </section>
         </div>
