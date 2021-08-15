@@ -6,11 +6,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//Context
+import { AuthContextProvider } from './store/context';
 
 ReactDOM.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>,
+    <AuthContextProvider>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </AuthContextProvider>,
     document.getElementById('root')
 );
 

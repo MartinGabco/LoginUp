@@ -1,13 +1,23 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 //styles
 import '../styles/Registration.css';
+
+//context
+import AuthContext from '../store/context';
 
 const Login: React.FC = () => {
 
     //useRef - gain data from inputs
     const emailInputRef = useRef<HTMLInputElement>(null);
     const passwordInputRef = useRef<HTMLInputElement>(null);
+
+    //calling useContext
+    const authCtx = useContext(AuthContext);
+
+    //useHistory() hook
+    const history = useHistory();
 
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault();
@@ -29,10 +39,11 @@ const Login: React.FC = () => {
         }).then((res) => {
             if(res.ok) {
                 return res.json().then((data) => {
-                    console.log(data);
+                    authCtx.login(data.idToken);
+                    history.replace('/home');
                 });
             } else {
-                console.log('Error!');
+                alert('Error!');
             }
         });
     }    
