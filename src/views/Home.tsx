@@ -9,8 +9,10 @@ import '../styles/Home.css';
 const Home: React.FC = () => {
     return ( 
         <div className="home">
+            <nav className="navigation">
+                <button className="logout">Logout</button>
+            </nav>
             <p className="htitle">Welcome home!</p>
-            <Link to="/">Log out</Link>
         </div>
     );
 }

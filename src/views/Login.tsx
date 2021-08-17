@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 //styles
@@ -43,7 +43,11 @@ const Login: React.FC = () => {
                     history.replace('/home');
                 });
             } else {
-                alert('Error!');
+                return res.json().then((data) => {
+                    if (data && data.error && data.error.message) {
+                       console.log(data.error.message);
+                    }
+                });
             }
         });
     }    
