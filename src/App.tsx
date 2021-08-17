@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 //views
 import Introduction from './views/Introduction';
@@ -8,14 +8,21 @@ import Registration from './views/Registration';
 import Login from './views/Login';
 import Home from './views/Home';
 
+//Context
+import AuthContext from './store/context';
+
 function App() {
+
+  const authCtx = useContext(AuthContext);
+
   return (
     <div className="App">
       <header className="App-header">
           <Route path='/' component={Introduction} exact/>
           <Route path='/registration' component={Registration} />
           <Route path='/login' component={Login} />
-          <Route path='/home' component={Home} />
+          {authCtx.isLoggedIn && <Route path='/home' component={Home} />}
+          {!authCtx.isLoggedIn && <Redirect to='/login' />}
       </header>
     </div>
   );
