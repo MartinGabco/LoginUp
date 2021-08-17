@@ -4,12 +4,14 @@ type ContextObject = {
     token: string,
     isLoggedIn: boolean,
     login: (token: any) => void,
+    logout: () => void,    
 };
 
 const AuthContext = React.createContext<ContextObject>({
     token: '',
     isLoggedIn: false,
     login: (token) => {},
+    logout: () => {},
 });
 
 export const AuthContextProvider: React.FC = (props) => {
@@ -21,10 +23,15 @@ export const AuthContextProvider: React.FC = (props) => {
         setToken(token);
     };
 
+    const logoutHandler = () => {
+        setToken('');
+    };
+
     const contextValue: ContextObject = {
         token: token,
         isLoggedIn: userIsLoggedIn,
         login: loginHandler,
+        logout: logoutHandler,
     };
 
     return (
