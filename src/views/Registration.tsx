@@ -49,6 +49,11 @@ const Registration: React.FC = () => {
                     if (data && data.error && data.error.message) {
                         let errorMessage = data.error.message;
                         authCtx.addErrorMessageRegistration(errorMessage);
+                        if (data.error.message.trim() === 'EMAIL_EXISTS') {
+                        setTimeout(() => {
+                                history.replace('/login')
+                            }, 1000);
+                        }
                     }
                 });
             }
