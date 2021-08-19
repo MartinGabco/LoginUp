@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useRef, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 //styles
@@ -45,7 +45,8 @@ const Login: React.FC = () => {
             } else {
                 return res.json().then((data) => {
                     if (data && data.error && data.error.message) {
-                       console.log(data.error.message);
+                       let errorMessage = data.error.message;
+                       authCtx.addErrorMessageLogin(errorMessage);
                     }
                 });
             }
@@ -87,6 +88,7 @@ const Login: React.FC = () => {
                             required
                         />
                     </div>
+                    <p>{authCtx.messageLogin}</p> 
                     <button 
                         type="submit" 
                         className="submit-button"

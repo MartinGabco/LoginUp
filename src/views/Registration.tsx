@@ -1,17 +1,22 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useContext, useState } from 'react'
 
 //imports
 import { Link, useHistory } from 'react-router-dom';
+
+//context
+import AuthContext from '../store/context';
 
 //styles
 import '../styles/Registration.css';
 
 const Registration: React.FC = () => {
 
+    //calling useContext
+    const authCtx = useContext(AuthContext);
+
     //Hooks
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState([]);
 
     //useRef - gain data from inputs
     const emailInputRef = useRef<HTMLInputElement>(null);
@@ -44,7 +49,7 @@ const Registration: React.FC = () => {
                 return res.json().then((data) => {
                     if (data && data.error && data.error.message) {
                         let errorMessage = data.error.message;
-                        setError(errorMessage);
+                        authCtx.addErrorMessageRegistration(errorMessage);
                     }
                 });
             }
@@ -87,7 +92,7 @@ const Registration: React.FC = () => {
                             required
                         />
                     </div>
-                     <p className="error-message">{error}</p>
+                     <p className="error-message">{authCtx.messageRegistration}</p>
                     {!isLoading && <button 
                         type="submit" 
                         className="submit-button"

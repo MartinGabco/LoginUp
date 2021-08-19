@@ -22,7 +22,7 @@ function App() {
           <Route path='/registration' component={Registration} />
           <Route path='/login' component={Login} />
           {authCtx.isLoggedIn && <Route path='/home' component={Home} />}
-          {!authCtx.isLoggedIn && <Redirect to='/login' />}
+          {!authCtx.isLoggedIn && <Redirect to='/' />}
       </header>
     </div>
   );
