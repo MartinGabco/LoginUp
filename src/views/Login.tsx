@@ -22,6 +22,8 @@ const Login: React.FC = () => {
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault();
 
+        authCtx.loadingLoginHandler(true);
+
         const receivedEmail = emailInputRef.current?.value;
         const receivedPassword = passwordInputRef.current?.value;
 
@@ -37,6 +39,7 @@ const Login: React.FC = () => {
                 'Content-Type':'application/json',
             },
         }).then((res) => {
+            authCtx.loadingLoginHandler(false);
             if(res.ok) {
                 return res.json().then((data) => {
                     authCtx.login(data.idToken);
@@ -89,12 +92,13 @@ const Login: React.FC = () => {
                         />
                     </div>
                     <p>{authCtx.messageLogin}</p> 
-                    <button 
+                    {!authCtx.isLoadingLogin && <button 
                         type="submit" 
                         className="submit-button"
                     >
                         LOG IN!
-                    </button>
+                    </button>}
+                    {authCtx.isLoadingLogin && <p className="loading"></p>}
                 </form>
             </section>
         </div>

@@ -16,7 +16,6 @@ const Registration: React.FC = () => {
 
     //Hooks
     const history = useHistory();
-    const [isLoading, setIsLoading] = useState(false);
 
     //useRef - gain data from inputs
     const emailInputRef = useRef<HTMLInputElement>(null);
@@ -28,7 +27,7 @@ const Registration: React.FC = () => {
         const receivedEmail = emailInputRef.current?.value;
         const receivedPassword = passwordInputRef.current?.value;
 
-        setIsLoading(true);
+        authCtx.loadingRegistrationHandler(true);
 
         fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBjA92JwCN3PE6mLVmDrQGfEOGWPoJj0a4',
         {
@@ -42,7 +41,7 @@ const Registration: React.FC = () => {
                 'Content-Type':'application/json',
             },
         }).then((res) => {
-            setIsLoading(false)
+            authCtx.loadingRegistrationHandler(false);
             if(res.ok) {
                 history.replace('/login')
             } else {
@@ -93,13 +92,13 @@ const Registration: React.FC = () => {
                         />
                     </div>
                      <p className="error-message">{authCtx.messageRegistration}</p>
-                    {!isLoading && <button 
+                    {!authCtx.isLoadingRegistration && <button 
                         type="submit" 
                         className="submit-button"
                     >
                         Register me, please!
                     </button>}
-                    {isLoading && <p className="loading"></p>}
+                    {authCtx.isLoadingRegistration && <p className="loading"></p>}
                 </form>
             </section>
         </div>

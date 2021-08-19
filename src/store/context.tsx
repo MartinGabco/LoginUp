@@ -9,6 +9,10 @@ type ContextObject = {
     addErrorMessageRegistration: (messageRegistration: string[]) => void,  
     messageLogin: string[], 
     addErrorMessageLogin: (messageLogin: string[]) => void,
+    isLoadingRegistration: boolean,
+    loadingRegistrationHandler: (isLoading: boolean) => void,
+    isLoadingLogin: boolean,
+    loadingLoginHandler: (isLoading: boolean) => void,
 };
 
 const AuthContext = React.createContext<ContextObject>({
@@ -20,6 +24,10 @@ const AuthContext = React.createContext<ContextObject>({
     addErrorMessageRegistration: () => {},
     messageLogin: [],
     addErrorMessageLogin: () => {},
+    isLoadingRegistration: false,
+    loadingRegistrationHandler: (isLoading) => {},
+    isLoadingLogin: false,
+    loadingLoginHandler: (isLoading) => {},    
 });
 
 export const AuthContextProvider: React.FC = (props) => {
@@ -51,6 +59,18 @@ export const AuthContextProvider: React.FC = (props) => {
         setMessageRegistration(messageRegistration);
     };
 
+    const [isLoadingRegistration, setIsLoadingRegistration] = useState(false);
+
+    const loadingRegistrationHandler = () => {
+        setIsLoadingRegistration(true);
+    }
+
+    const [isLoadingLogin, setIsLoadingLogin] = useState(false);
+
+    const loadingLoginHandler = () => {
+        setIsLoadingLogin(true);
+    }    
+
     const contextValue: ContextObject = {
         token: token,
         isLoggedIn: userIsLoggedIn,
@@ -59,7 +79,11 @@ export const AuthContextProvider: React.FC = (props) => {
         messageLogin: messageLogin,
         addErrorMessageLogin: addErrorMessageLogin,
         messageRegistration: messageRegistration,
-        addErrorMessageRegistration: addErrorMessageRegistration,        
+        addErrorMessageRegistration: addErrorMessageRegistration,
+        isLoadingRegistration: isLoadingRegistration,
+        loadingRegistrationHandler: loadingRegistrationHandler,
+        isLoadingLogin: isLoadingLogin,
+        loadingLoginHandler: loadingLoginHandler,        
     };
 
     return (
